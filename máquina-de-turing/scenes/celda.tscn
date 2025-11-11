@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b21ixm3iit7yw"]
+
+[node name="Celda" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
