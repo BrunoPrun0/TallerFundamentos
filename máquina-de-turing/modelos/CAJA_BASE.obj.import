@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bs0qlnhp01tor"
+path="res://.godot/imported/CAJA_BASE.obj-a7dfd50ed65d3ef6bf589d1e28114454.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CAJA_BASE.obj-a7dfd50ed65d3ef6bf589d1e28114454.mesh"]
+
+source_file="res://modelos/CAJA_BASE.obj"
+dest_files=["res://.godot/imported/CAJA_BASE.obj-a7dfd50ed65d3ef6bf589d1e28114454.mesh", "res://.godot/imported/CAJA_BASE.obj-a7dfd50ed65d3ef6bf589d1e28114454.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

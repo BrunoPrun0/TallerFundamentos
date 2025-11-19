@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://mqrar50edoyd"]
+
+[ext_resource type="Script" uid="uid://c5fk7kbkvyr6j" path="res://scenes/camera_3d.gd" id="1_p4v73"]
+[ext_resource type="PackedScene" uid="uid://b21ixm3iit7yw" path="res://scenes/celda.tscn" id="2_ir1vx"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+current = true
+script = ExtResource("1_p4v73")
+
+[node name="celda" parent="." instance=ExtResource("2_ir1vx")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.591563, 0, -0.8062588, 0, 1, 0, 0.8062588, 0, -0.591563, 34.18813, 0, 0)

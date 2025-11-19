@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dj6wh5yjh8x8l"
+path="res://.godot/imported/MOTOR_COMPLETO.obj-05dc5aecc51391814b2c2ce823dd39ef.mesh"
+
+[deps]
+
+files=["res://.godot/imported/MOTOR_COMPLETO.obj-05dc5aecc51391814b2c2ce823dd39ef.mesh"]
+
+source_file="res://modelos/MOTOR_COMPLETO.obj"
+dest_files=["res://.godot/imported/MOTOR_COMPLETO.obj-05dc5aecc51391814b2c2ce823dd39ef.mesh", "res://.godot/imported/MOTOR_COMPLETO.obj-05dc5aecc51391814b2c2ce823dd39ef.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

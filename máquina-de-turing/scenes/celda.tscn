@@ -1,7 +1,51 @@
-[gd_scene format=3 uid="uid://b21ixm3iit7yw"]
+[gd_scene load_steps=10 format=3 uid="uid://b21ixm3iit7yw"]
 
-[node name="Celda" type="Node2D"]
+[ext_resource type="Script" uid="uid://cfpy45mwsawtv" path="res://scripts/celda.gd" id="1_553d0"]
+[ext_resource type="ArrayMesh" uid="uid://bs0qlnhp01tor" path="res://modelos/CAJA_BASE.obj" id="1_llmcr"]
+[ext_resource type="ArrayMesh" uid="uid://1hwctqkv3yy0" path="res://modelos/CAJA_BOTON.obj" id="2_xycrl"]
+[ext_resource type="ArrayMesh" uid="uid://h26ukwoa7j4x" path="res://modelos/CAJA_LED.obj" id="3_xycrl"]
+[ext_resource type="Script" uid="uid://da3iairy1yj01" path="res://scripts/caja_led.gd" id="5_jdgio"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xycrl"]
+albedo_color = Color(0.13870001, 0.13870001, 0.19, 1)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_553d0"]
+albedo_color = Color(1, 0.003921569, 0.101960786, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jdgio"]
+size = Vector3(1.1564941, 4.143799, 3.9066162)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jdgio"]
+albedo_color = Color(0.41, 0.41, 0.41, 0.5137255)
+emission_enabled = true
+emission = Color(0.13, 0.13, 0.13, 1)
+emission_energy_multiplier = 5.0
+
+[node name="celda" type="Node3D"]
+script = ExtResource("1_553d0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_llmcr")
+surface_material_override/0 = SubResource("StandardMaterial3D_xycrl")
+
+[node name="CajaBoton" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3366394, 0.034600258, 0.007976472)
+mesh = ExtResource("2_xycrl")
+surface_material_override/0 = SubResource("StandardMaterial3D_553d0")
+
+[node name="Area3D" type="Area3D" parent="CajaBoton"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CajaBoton/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10510254, -0.0059814453, -0.006652832)
+shape = SubResource("BoxShape3D_jdgio")
+
+[node name="CajaLed" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00019776821, -1.6007634, 0.06231153)
+mesh = ExtResource("3_xycrl")
+surface_material_override/0 = SubResource("StandardMaterial3D_jdgio")
+script = ExtResource("5_jdgio")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CajaLed"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00019776821, 0.0827502, -0.06231153)
+light_energy = 16.0
+omni_range = 9.929
