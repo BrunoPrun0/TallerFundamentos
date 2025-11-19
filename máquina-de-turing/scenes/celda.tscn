@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://da3iairy1yj01" path="res://scripts/caja_led.gd" id="5_jdgio"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xycrl"]
-albedo_color = Color(0.13870001, 0.13870001, 0.19, 1)
+albedo_color = Color(0.07309847, 0.07308813, 0.10730518, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_553d0"]
 albedo_color = Color(1, 0.003921569, 0.101960786, 1)
@@ -48,4 +48,4 @@ script = ExtResource("5_jdgio")
 [node name="OmniLight3D" type="OmniLight3D" parent="CajaLed"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00019776821, 0.0827502, -0.06231153)
 light_energy = 16.0
-omni_range = 9.929
+omni_range = 7.8975196

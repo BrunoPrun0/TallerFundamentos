@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Máquina de Turing"
-run/main_scene="uid://b21ixm3iit7yw"
+run/main_scene="uid://mqrar50edoyd"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

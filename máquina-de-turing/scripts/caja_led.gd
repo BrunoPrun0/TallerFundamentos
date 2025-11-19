@@ -10,9 +10,10 @@ const EMISSION_MULTIPLIER = 25.0       # Intensidad del brillo del material
 var led_material: StandardMaterial3D
 
 func _ready():
-	led_material = get_surface_override_material(0)
-	
-	if led_material:
+	var shared_material = get_surface_override_material(0)
+	if shared_material:
+		led_material = shared_material.duplicate()
+		set_surface_override_material(0, led_material)
 		_set_light_state(0)
 
 func set_bit(valor: int):

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bva0nex6l8ekt"]
+
+[ext_resource type="PackedScene" uid="uid://mqrar50edoyd" path="res://scenes/maquina.tscn" id="1_tprbv"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_myiae"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tprbv"]
+albedo_color = Color(0.08405205, 0.019408172, 0.1923702, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_myiae"]
+
+[node name="suelo" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(9680.086, 0, 0, 0, 1, 0, 0, 0, 10526.833, 0, 0, 0)
+mesh = SubResource("PlaneMesh_myiae")
+surface_material_override/0 = SubResource("StandardMaterial3D_tprbv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(868891.75, 0, 0, 0, 1, 0, 0, 0, 2490054.8, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_myiae")
+
+[node name="Node3D" parent="." instance=ExtResource("1_tprbv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.639172, 12.939361, 185.16687)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.010279775, 0.99994725, 0, -0.99994725, 0.010279775, 18.701801, 104.28942, 158.90086)
+shadow_enabled = true
+spot_range = 77.36652
+spot_angle = 47.091373

@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://mqrar50edoyd"]
+[gd_scene load_steps=6 format=3 uid="uid://mqrar50edoyd"]
 
 [ext_resource type="Script" uid="uid://c0cfvgcd1px1" path="res://scenes/maquina.gd" id="1_e6egp"]
 [ext_resource type="Script" uid="uid://c5fk7kbkvyr6j" path="res://scenes/camera_3d.gd" id="1_p4v73"]
+[ext_resource type="PackedScene" uid="uid://b21ixm3iit7yw" path="res://scenes/celda.tscn" id="2_ir1vx"]
 [ext_resource type="ArrayMesh" uid="uid://1xw5xtbievmy" path="res://modelos/MARCO Y RIELES.obj" id="3_v2mja"]
-[ext_resource type="ArrayMesh" uid="uid://dj6wh5yjh8x8l" path="res://modelos/MOTOR_COMPLETO.obj" id="4_64ayl"]
-[ext_resource type="ArrayMesh" uid="uid://5t8xjg1pp7s" path="res://modelos/MOTOR_ENGRANAJE.obj" id="5_wf17r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2mja"]
 albedo_color = Color(0.040899, 0.040899, 0.040899, 1)
@@ -17,6 +16,9 @@ transform = Transform3D(0.02395381, -0.6321468, 0.7744784, -0.008725026, 0.77453
 current = true
 fov = 61.875
 script = ExtResource("1_p4v73")
+
+[node name="celda" parent="." instance=ExtResource("2_ir1vx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 76.12008)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.7936145, 0.5710248, 0.21001579, -0.4767877, 0.36926013, 0.7976969, 0.37795424, -0.73319674, 0.56530774, 185.45235, 52.41512, 145.20053)
@@ -31,11 +33,3 @@ transform = Transform3D(0.6313621, -0.48754758, 0.6030582, -0.47678772, 0.369260
 
 [node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.87602973, -0.12483841, -0.4658191, -0.47678775, 0.36926025, 0.79769695, 0.072425246, 0.920903, -0.38300434, -180.747, 52.41512, -1.1640167)
-
-[node name="MotorCompleto" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.404612, 3.4396257, 85.26757)
-mesh = ExtResource("4_64ayl")
-
-[node name="MotorEngranaje" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.615415, 3.668683, -133.44633)
-mesh = ExtResource("5_wf17r")
