@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://mqrar50edoyd"]
+[gd_scene load_steps=8 format=3 uid="uid://mqrar50edoyd"]
 
 [ext_resource type="Script" uid="uid://c0cfvgcd1px1" path="res://scenes/maquina.gd" id="1_e6egp"]
 [ext_resource type="Script" uid="uid://c5fk7kbkvyr6j" path="res://scenes/camera_3d.gd" id="1_p4v73"]
 [ext_resource type="ArrayMesh" uid="uid://1xw5xtbievmy" path="res://modelos/MARCO Y RIELES.obj" id="3_v2mja"]
 [ext_resource type="ArrayMesh" uid="uid://dj6wh5yjh8x8l" path="res://modelos/MOTOR_COMPLETO.obj" id="4_64ayl"]
 [ext_resource type="ArrayMesh" uid="uid://5t8xjg1pp7s" path="res://modelos/MOTOR_ENGRANAJE.obj" id="5_wf17r"]
+[ext_resource type="ArrayMesh" uid="uid://c4fxtg13bvckw" path="res://modelos/cabezal.obj" id="6_bljcq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2mja"]
 albedo_color = Color(0.040899, 0.040899, 0.040899, 1)
@@ -39,3 +40,7 @@ mesh = ExtResource("4_64ayl")
 [node name="MotorEngranaje" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.615415, 3.668683, -133.44633)
 mesh = ExtResource("5_wf17r")
+
+[node name="Cabezal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.461, 9.21, 76.113)
+mesh = ExtResource("6_bljcq")

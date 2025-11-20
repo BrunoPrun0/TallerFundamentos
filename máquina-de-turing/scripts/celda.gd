@@ -24,6 +24,9 @@ func _toggle_state():
 	if luz_led and "set_bit" in luz_led:
 		luz_led.set_bit(bit_state) # llama a la función que enciende/apaga el LED
 	_animar_boton(bit_state)
+	
+func LDR_get_bit():
+	return bit_state
 
 func _animar_boton(new_state: int):
 	var target_position: Vector3
