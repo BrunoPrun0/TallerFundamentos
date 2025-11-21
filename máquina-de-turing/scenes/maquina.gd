@@ -9,9 +9,12 @@ var cinta: Array[Node3D] = []
 # para controlar la velocidad de ejecución
 var timer: Timer 
 
-@export var modo_suma: bool = false # controlado por palanca
+@export var modo_suma: bool = true # controlado por palanca
 @export var velocidad_paso: float = 0.6 # pausa entre celdas
 @onready var cabezal: Node3D = $Cabezal 
+@onready var solenoide_mesh: Node3D = $Cabezal/SolenoideDentro 
+const DESPLAZAMIENTO_SOLENOIDE_X = 4  # Distancia que se mueve el solenoide (ej. 10 cm)
+const TIEMPO_ACCION_SOLENOIDE = 0.05    # Tiempo rápido para simular la acción
 
 var estado_actual: String = "Q0"
 var indice_cabezal: int = 0 
@@ -86,6 +89,8 @@ func _escribir_valor_celda(celda: Node3D, valor: String):
 		var nuevo_bit = int(valor)
 		if celda.LDR_get_bit() != nuevo_bit:
 			celda._toggle_state()
+			_animar_solenoide()
+			
 			
 func _mover_cabezal(movimiento: String):
 	match movimiento:
@@ -119,6 +124,14 @@ func _generar_cinta():
 		nueva_celda.position = Vector3(BASE_X, BASE_Y, pos_z)
 		add_child(nueva_celda)
 		cinta.append(nueva_celda)
+		
+func _animar_solenoide():
+	var pos_base = solenoide_mesh.position
+	var pos_accion = pos_base - Vector3(DESPLAZAMIENTO_SOLENOIDE_X, 0, 0)
+	var tween = create_tween()
+	tween.tween_property(solenoide_mesh, "position", pos_accion, TIEMPO_ACCION_SOLENOIDE)
+	tween.tween_interval(0.01)
+	tween.tween_property(solenoide_mesh, "position", pos_base, TIEMPO_ACCION_SOLENOIDE)
 		
 	
 	

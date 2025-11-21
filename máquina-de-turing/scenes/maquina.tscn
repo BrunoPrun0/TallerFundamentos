@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://mqrar50edoyd"]
+[gd_scene load_steps=12 format=3 uid="uid://mqrar50edoyd"]
 
 [ext_resource type="Script" uid="uid://c0cfvgcd1px1" path="res://scenes/maquina.gd" id="1_e6egp"]
 [ext_resource type="Script" uid="uid://c5fk7kbkvyr6j" path="res://scenes/camera_3d.gd" id="1_p4v73"]
@@ -6,9 +6,15 @@
 [ext_resource type="ArrayMesh" uid="uid://dj6wh5yjh8x8l" path="res://modelos/MOTOR_COMPLETO.obj" id="4_64ayl"]
 [ext_resource type="ArrayMesh" uid="uid://5t8xjg1pp7s" path="res://modelos/MOTOR_ENGRANAJE.obj" id="5_wf17r"]
 [ext_resource type="ArrayMesh" uid="uid://c4fxtg13bvckw" path="res://modelos/cabezal.obj" id="6_bljcq"]
+[ext_resource type="ArrayMesh" uid="uid://71c0wiyecpf1" path="res://modelos/solenoide_dentro.obj" id="7_lkral"]
+[ext_resource type="ArrayMesh" uid="uid://ora631hk3p2u" path="res://modelos/solenoide_fuera.obj" id="8_ywmaw"]
+[ext_resource type="PackedScene" uid="uid://b21ixm3iit7yw" path="res://scenes/celda.tscn" id="9_hipki"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2mja"]
 albedo_color = Color(0.040899, 0.040899, 0.040899, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkral"]
+albedo_color = Color(1, 1, 0.15686275, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e6egp")
@@ -44,3 +50,17 @@ mesh = ExtResource("5_wf17r")
 [node name="Cabezal" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.461, 9.21, 76.113)
 mesh = ExtResource("6_bljcq")
+
+[node name="SolenoideDentro" type="MeshInstance3D" parent="Cabezal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.858, -9.228, 0)
+mesh = ExtResource("7_lkral")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_lkral")
+
+[node name="SolenoideFuera" type="MeshInstance3D" parent="Cabezal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.858, -9.228, 0)
+mesh = ExtResource("8_ywmaw")
+skeleton = NodePath("../..")
+
+[node name="celda" parent="." instance=ExtResource("9_hipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016472816, 0, 76.14671)
