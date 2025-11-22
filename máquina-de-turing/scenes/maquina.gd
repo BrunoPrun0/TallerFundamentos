@@ -9,10 +9,12 @@ var cinta: Array[Node3D] = []
 # para controlar la velocidad de ejecución
 var timer: Timer 
 
-@export var modo_suma: bool = true # controlado por palanca
+@export var modo_suma: bool = false # controlado por palanca
 @export var velocidad_paso: float = 0.6 # pausa entre celdas
 @onready var cabezal: Node3D = $Cabezal 
 @onready var solenoide_mesh: Node3D = $Cabezal/SolenoideDentro 
+@onready var boton_reiniciar: Node3D = $BotonReiniciar/button/buttonbutton
+@onready var boton_iniciar: Node3D = $BotonIniciar/button/buttonbutton
 const DESPLAZAMIENTO_SOLENOIDE_X = 4  # Distancia que se mueve el solenoide (ej. 10 cm)
 const TIEMPO_ACCION_SOLENOIDE = 0.05    # Tiempo rápido para simular la acción
 
@@ -43,9 +45,37 @@ func _ready():
 	_generar_cinta()
 	timer = Timer.new()
 	add_child(timer)
-	timer.timeout.connect(_ejecutar_paso)
+	timer.timeout.connect(_ejecutar_paso)	
+	if boton_reiniciar:
+		boton_reiniciar.turing_button_pressed.connect(_on_boton_reiniciar_pressed)
+	if boton_iniciar:
+		boton_iniciar.turing_button_pressed.connect(_on_boton_iniciar_pressed)
+		
+func _on_boton_reiniciar_pressed():
+	print("--- REINICIANDO MÁQUINA ---")
+	timer.stop() 
+	for celda in cinta:
+		if celda.has_method("LDR_get_bit"):
+			if celda.LDR_get_bit() == 1:
+				celda._toggle_state()
+
+	indice_cabezal = 0
 	if cinta.size() > 0:
-		iniciar_maquina()
+		var pos_inicio = cinta[0].global_position
+		cabezal.global_position = Vector3(cabezal.global_position.x, cabezal.global_position.y, pos_inicio.z)
+	estado_actual = "Q0"
+	print("Reinicialización completa. Máquina lista en Q0.")
+
+
+func _on_boton_iniciar_pressed():
+	print("apretao iniciar")
+	if estado_actual != "QF":
+		print("--- INICIANDO PROCESO ---")
+		if cinta.size() > 0:
+			iniciar_maquina()
+	else:
+		print("La máquina ya terminó (QF). Presiona REINICIAR primero.")
+
 func iniciar_maquina():
 	print("Máquina de Turing iniciada.")
 	estado_actual = "Q0"

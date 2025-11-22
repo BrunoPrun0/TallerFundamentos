@@ -6,9 +6,9 @@
 [ext_resource type="ArrayMesh" uid="uid://dj6wh5yjh8x8l" path="res://modelos/MOTOR_COMPLETO.obj" id="4_64ayl"]
 [ext_resource type="ArrayMesh" uid="uid://5t8xjg1pp7s" path="res://modelos/MOTOR_ENGRANAJE.obj" id="5_wf17r"]
 [ext_resource type="ArrayMesh" uid="uid://c4fxtg13bvckw" path="res://modelos/cabezal.obj" id="6_bljcq"]
+[ext_resource type="PackedScene" uid="uid://bch4wotkewucx" path="res://scenes/Boton3D.tscn" id="6_lkral"]
 [ext_resource type="ArrayMesh" uid="uid://71c0wiyecpf1" path="res://modelos/solenoide_dentro.obj" id="7_lkral"]
 [ext_resource type="ArrayMesh" uid="uid://ora631hk3p2u" path="res://modelos/solenoide_fuera.obj" id="8_ywmaw"]
-[ext_resource type="PackedScene" uid="uid://b21ixm3iit7yw" path="res://scenes/celda.tscn" id="9_hipki"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2mja"]
 albedo_color = Color(0.040899, 0.040899, 0.040899, 1)
@@ -47,6 +47,9 @@ mesh = ExtResource("4_64ayl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.615415, 3.668683, -133.44633)
 mesh = ExtResource("5_wf17r")
 
+[node name="BotonReiniciar" parent="." instance=ExtResource("6_lkral")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 44.189, 24.999, -23.22)
+
 [node name="Cabezal" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.461, 9.21, 76.113)
 mesh = ExtResource("6_bljcq")
@@ -62,5 +65,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.858, -9.228, 0)
 mesh = ExtResource("8_ywmaw")
 skeleton = NodePath("../..")
 
-[node name="celda" parent="." instance=ExtResource("9_hipki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016472816, 0, 76.14671)
+[node name="BotonIniciar" parent="." instance=ExtResource("6_lkral")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 44.189, 24.99, -11.813)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-4.371139e-07, -10, -4.371139e-07, 0, -4.371139e-07, 10, -10, 4.371139e-07, 1.9106854e-14, 48.309948, 25.08269, -11.872411)
+text = "INICIAR"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(-4.371139e-07, -10, -4.371139e-07, 0, -4.371139e-07, 10, -10, 4.371139e-07, 1.9106854e-14, 48.309948, 25.08269, -23.764784)
+text = "REINICIAR
+"

@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://bch4wotkewucx"]
+
+[ext_resource type="Script" uid="uid://cvs50qvdp7skp" path="res://scripts/button.gd" id="1_4a85m"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ab4d3"]
+height = 0.4802704
+radius = 0.4970703
+
+[sub_resource type="BoxMesh" id="BoxMesh_uf3nu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48vky"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_1l8eu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncgqf"]
+albedo_color = Color(0.34835935, 0.01954684, 9.62615e-08, 1)
+
+[node name="Area3D" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.8752476, 0, 0, 0, 1.0000001, 0, 0, 0, 0.8794572, 0, 0.34336093, 0)
+shape = SubResource("CylinderShape3D_ab4d3")
+
+[node name="button" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9164838, 0, 0, 0, 0.31653574, 0, 0, 0, 0.91298777, 0, 0.16539663, 0)
+mesh = SubResource("BoxMesh_uf3nu")
+surface_material_override/0 = SubResource("StandardMaterial3D_48vky")
+
+[node name="buttonbutton" type="MeshInstance3D" parent="button"]
+transform = Transform3D(0.88136405, 0, 0, 0, 0.9592863, 0, 0, 0, 0.86707073, 0, 0.58951753, 0)
+mesh = SubResource("TubeTrailMesh_1l8eu")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ncgqf")
+script = ExtResource("1_4a85m")
