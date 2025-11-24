@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://1581cl158dko"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p2oib"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.6162345e-09, 0.036975134, -0.9993162, -1, -4.371139e-08, 0, -4.36815e-08, 0.9993162, 0.036975134, 0, 0, 0)
+mesh = SubResource("CylinderMesh_p2oib")

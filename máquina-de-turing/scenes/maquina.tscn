@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://mqrar50edoyd"]
+[gd_scene load_steps=21 format=3 uid="uid://mqrar50edoyd"]
 
 [ext_resource type="Script" uid="uid://c0cfvgcd1px1" path="res://scripts/maquina.gd" id="1_e6egp"]
 [ext_resource type="Script" uid="uid://c5fk7kbkvyr6j" path="res://scripts/camera_3d.gd" id="1_p4v73"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://co6uyclk3f1h8" path="res://scenes/Palanca.tscn" id="10_ywmaw"]
 [ext_resource type="ArrayMesh" uid="uid://c3ynwnubsss80" path="res://modelos/motor_base.obj" id="11_aaok2"]
 [ext_resource type="ArrayMesh" uid="uid://yl0sihc4om7n" path="res://modelos/correa.obj" id="11_hipki"]
+[ext_resource type="Script" uid="uid://5kyqggun7bx" path="res://scripts/psuedo_physics_cable.gd" id="12_lrao4"]
+[ext_resource type="PackedScene" uid="uid://1581cl158dko" path="res://scenes/mesh_instance_3d.tscn" id="13_c4cj5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2mja"]
 albedo_color = Color(0.040899, 0.040899, 0.040899, 1)
@@ -26,6 +28,10 @@ albedo_color = Color(0.038397167, 0.038397167, 0.03839716, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lrao4"]
 albedo_color = Color(0.09019608, 0.05882353, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lrao4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c4cj5"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e6egp")
@@ -75,6 +81,18 @@ mesh = ExtResource("8_ywmaw")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hipki")
 
+[node name="RigidBody3D" type="RigidBody3D" parent="Cabezal"]
+transform = Transform3D(-1.0798469e-06, 0, 0.99999994, 0, 26.390417, 0, -24.704018, 0, -4.3711385e-08, 6.9396834, 1.3641977, 0)
+collision_layer = 12
+collision_mask = 13
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+linear_damp = 1.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cabezal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.94, 1.364, 0)
+
 [node name="BotonIniciar" parent="." instance=ExtResource("6_lkral")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 44.189, 24.99, -11.813)
 
@@ -110,8 +128,71 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4417715, 3.44, 84.761)
 mesh = ExtResource("11_aaok2")
 surface_material_override/0 = SubResource("StandardMaterial3D_lrao4")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 16.448475, 3.4695648e-07, 74.24608)
+[node name="cableCabezal" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.734503, 19.574945, 50.367645)
+script = ExtResource("12_lrao4")
+start_point = NodePath("../StaticBody3D")
+end_point = NodePath("../Cabezal/StaticBody3D")
+cable_length = 60.5
+cable_gravity_amp = 10.0
+cable_thickness = 1.0
+cable_mesh = ExtResource("13_c4cj5")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.726242, 24.14826, -24.477215)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.3637886, -22.487928, 107.58273)
 radius = 0.292
-height = 17.874878
+height = 3.6347942
+sides = 10
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.33994293, -24.148262, 63.804615)
+radius = 0.292
+height = 87.944305
+sides = 10
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.33102417, -20.84319, 108.3401)
+radius = 0.292
+height = 1.8037987
+sides = 10
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -11.510547, -30.984743, 61.276215)
+radius = 0.292
+height = 84.80467
+sides = 10
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -11.579216, -30.991093, 103.696884)
+mesh = SubResource("SphereMesh_lrao4")
+surface_material_override/0 = SubResource("StandardMaterial3D_c4cj5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.2872181, -24.22871, 107.61214)
+mesh = SubResource("SphereMesh_lrao4")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_c4cj5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.2872181, -20.832415, 107.61214)
+mesh = SubResource("SphereMesh_lrao4")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_c4cj5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -11.460482, -30.994408, 18.89308)
+mesh = SubResource("SphereMesh_lrao4")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_c4cj5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.726242, 24.14826, -24.477215)
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1.1924881e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, -1.1924881e-08, -5.2125306e-16, 10.49736, -6.8149195, -5.609202)
+radius = 0.292
+height = 10.301047
 sides = 10
