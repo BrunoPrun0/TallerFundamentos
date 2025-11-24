@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://mqrar50edoyd"]
+[gd_scene load_steps=13 format=3 uid="uid://mqrar50edoyd"]
 
-[ext_resource type="Script" uid="uid://c0cfvgcd1px1" path="res://scenes/maquina.gd" id="1_e6egp"]
-[ext_resource type="Script" uid="uid://c5fk7kbkvyr6j" path="res://scenes/camera_3d.gd" id="1_p4v73"]
+[ext_resource type="Script" uid="uid://c0cfvgcd1px1" path="res://scripts/maquina.gd" id="1_e6egp"]
+[ext_resource type="Script" uid="uid://c5fk7kbkvyr6j" path="res://scripts/camera_3d.gd" id="1_p4v73"]
 [ext_resource type="ArrayMesh" uid="uid://1xw5xtbievmy" path="res://modelos/MARCO Y RIELES.obj" id="3_v2mja"]
 [ext_resource type="ArrayMesh" uid="uid://dj6wh5yjh8x8l" path="res://modelos/MOTOR_COMPLETO.obj" id="4_64ayl"]
 [ext_resource type="ArrayMesh" uid="uid://5t8xjg1pp7s" path="res://modelos/MOTOR_ENGRANAJE.obj" id="5_wf17r"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bch4wotkewucx" path="res://scenes/Boton3D.tscn" id="6_lkral"]
 [ext_resource type="ArrayMesh" uid="uid://71c0wiyecpf1" path="res://modelos/solenoide_dentro.obj" id="7_lkral"]
 [ext_resource type="ArrayMesh" uid="uid://ora631hk3p2u" path="res://modelos/solenoide_fuera.obj" id="8_ywmaw"]
+[ext_resource type="PackedScene" uid="uid://co6uyclk3f1h8" path="res://scenes/Palanca.tscn" id="10_ywmaw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2mja"]
 albedo_color = Color(0.040899, 0.040899, 0.040899, 1)
@@ -75,4 +76,17 @@ text = "INICIAR"
 [node name="Label3D2" type="Label3D" parent="."]
 transform = Transform3D(-4.371139e-07, -10, -4.371139e-07, 0, -4.371139e-07, 10, -10, 4.371139e-07, 1.9106854e-14, 48.309948, 25.08269, -23.764784)
 text = "REINICIAR
+"
+
+[node name="Label3D3" type="Label3D" parent="."]
+transform = Transform3D(-4.371139e-07, -10, -4.371139e-07, 0, -4.371139e-07, 10, -10, 4.371139e-07, 1.9106854e-14, 48.31, 25.08, -33.1121)
+text = "SUMA
+"
+
+[node name="Palanca" parent="." instance=ExtResource("10_ywmaw")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 42.540974, 25.224573, -32.997887)
+
+[node name="Label3D4" type="Label3D" parent="."]
+transform = Transform3D(-4.371139e-07, -10, -4.371139e-07, 0, -4.371139e-07, 10, -10, 4.371139e-07, 1.9106854e-14, 36.75987, 25.08, -33.1121)
+text = "RESTA
 "

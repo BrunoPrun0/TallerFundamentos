@@ -15,6 +15,7 @@ var timer: Timer
 @onready var solenoide_mesh: Node3D = $Cabezal/SolenoideDentro 
 @onready var boton_reiniciar: Node3D = $BotonReiniciar/button/buttonbutton
 @onready var boton_iniciar: Node3D = $BotonIniciar/button/buttonbutton
+@onready var switch_palanca = $Palanca/base/switch
 const DESPLAZAMIENTO_SOLENOIDE_X = 4  # Distancia que se mueve el solenoide (ej. 10 cm)
 const TIEMPO_ACCION_SOLENOIDE = 0.05    # Tiempo rápido para simular la acción
 
@@ -50,6 +51,8 @@ func _ready():
 		boton_reiniciar.turing_button_pressed.connect(_on_boton_reiniciar_pressed)
 	if boton_iniciar:
 		boton_iniciar.turing_button_pressed.connect(_on_boton_iniciar_pressed)
+	if switch_palanca:
+		switch_palanca.mode_changed.connect(_on_switch_palanca_mode_changed)
 		
 func _on_boton_reiniciar_pressed():
 	print("--- REINICIANDO MÁQUINA ---")
@@ -66,9 +69,7 @@ func _on_boton_reiniciar_pressed():
 	estado_actual = "Q0"
 	print("Reinicialización completa. Máquina lista en Q0.")
 
-
 func _on_boton_iniciar_pressed():
-	print("apretao iniciar")
 	if estado_actual != "QF":
 		print("--- INICIANDO PROCESO ---")
 		if cinta.size() > 0:
@@ -81,6 +82,10 @@ func iniciar_maquina():
 	estado_actual = "Q0"
 	indice_cabezal = 0
 	timer.start(velocidad_paso)
+	
+func _on_switch_palanca_mode_changed(is_suma_mode_from_switch: bool):
+	modo_suma = is_suma_mode_from_switch
+	print("Máquina de Turing: Modo de operación actualizado a 'Suma':", modo_suma)
 
 func _ejecutar_paso():
 	if estado_actual == "QF" or indice_cabezal < 0 or indice_cabezal >= cinta.size():
