@@ -19,6 +19,10 @@ var timer: Timer
 const DESPLAZAMIENTO_SOLENOIDE_X = 4  # Distancia que se mueve el solenoide (ej. 10 cm)
 const TIEMPO_ACCION_SOLENOIDE = 0.05    # Tiempo rápido para simular la acción
 
+@onready var motor_engranaje1: Node3D = $MotorEngranaje1 
+@onready var motor_engranaje2: Node3D = $MotorEngranaje2
+const ENGRANAJE_ROTATION_FACTOR: float = 360.0 / (ESPACIO_ENTRE_CELDAS * 4)
+
 var estado_actual: String = "Q0"
 var indice_cabezal: int = 0 
 
@@ -141,9 +145,30 @@ func _mover_cabezal(movimiento: String):
 		var target_position = target_celda.global_position
 		
 		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_LINEAR)
+		
 		tween.tween_property(cabezal, "global_position", 
 							 Vector3(cabezal.global_position.x, cabezal.global_position.y, target_position.z), 
 							 velocidad_paso * 0.9)
+		
+		if movimiento != "N": 
+			var direccion_movimiento: float
+			if movimiento == "R":
+				direccion_movimiento = -1.0 
+			elif movimiento == "L":
+				direccion_movimiento = 1.0 
+
+			var rotacion_delta = ENGRANAJE_ROTATION_FACTOR * direccion_movimiento * 3
+			tween.parallel()
+			if motor_engranaje1:
+				var current_rot_x1 = motor_engranaje1.rotation_degrees.x
+				var target_rot_x1 = current_rot_x1 + rotacion_delta
+				tween.tween_property(motor_engranaje1, "rotation_degrees:x", target_rot_x1, velocidad_paso * 0.5)
+			
+			if motor_engranaje2:
+				var current_rot_x2 = motor_engranaje2.rotation_degrees.x
+				var target_rot_x2 = current_rot_x2 + rotacion_delta
+				tween.tween_property(motor_engranaje2, "rotation_degrees:x", target_rot_x2, velocidad_paso * 0.5)
 
 
 

@@ -1,21 +1,31 @@
-[gd_scene load_steps=13 format=3 uid="uid://mqrar50edoyd"]
+[gd_scene load_steps=17 format=3 uid="uid://mqrar50edoyd"]
 
 [ext_resource type="Script" uid="uid://c0cfvgcd1px1" path="res://scripts/maquina.gd" id="1_e6egp"]
 [ext_resource type="Script" uid="uid://c5fk7kbkvyr6j" path="res://scripts/camera_3d.gd" id="1_p4v73"]
 [ext_resource type="ArrayMesh" uid="uid://1xw5xtbievmy" path="res://modelos/MARCO Y RIELES.obj" id="3_v2mja"]
-[ext_resource type="ArrayMesh" uid="uid://dj6wh5yjh8x8l" path="res://modelos/MOTOR_COMPLETO.obj" id="4_64ayl"]
-[ext_resource type="ArrayMesh" uid="uid://5t8xjg1pp7s" path="res://modelos/MOTOR_ENGRANAJE.obj" id="5_wf17r"]
+[ext_resource type="PackedScene" uid="uid://jn2xfmfefosv" path="res://scenes/motor_engranaje.tscn" id="5_hipki"]
 [ext_resource type="ArrayMesh" uid="uid://c4fxtg13bvckw" path="res://modelos/cabezal.obj" id="6_bljcq"]
 [ext_resource type="PackedScene" uid="uid://bch4wotkewucx" path="res://scenes/Boton3D.tscn" id="6_lkral"]
 [ext_resource type="ArrayMesh" uid="uid://71c0wiyecpf1" path="res://modelos/solenoide_dentro.obj" id="7_lkral"]
 [ext_resource type="ArrayMesh" uid="uid://ora631hk3p2u" path="res://modelos/solenoide_fuera.obj" id="8_ywmaw"]
 [ext_resource type="PackedScene" uid="uid://co6uyclk3f1h8" path="res://scenes/Palanca.tscn" id="10_ywmaw"]
+[ext_resource type="ArrayMesh" uid="uid://c3ynwnubsss80" path="res://modelos/motor_base.obj" id="11_aaok2"]
+[ext_resource type="ArrayMesh" uid="uid://yl0sihc4om7n" path="res://modelos/correa.obj" id="11_hipki"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2mja"]
 albedo_color = Color(0.040899, 0.040899, 0.040899, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkral"]
 albedo_color = Color(1, 1, 0.15686275, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hipki"]
+albedo_color = Color(0.07683582, 0.07683582, 0.07683582, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aaok2"]
+albedo_color = Color(0.038397167, 0.038397167, 0.03839716, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lrao4"]
+albedo_color = Color(0.09019608, 0.05882353, 1, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e6egp")
@@ -30,7 +40,7 @@ script = ExtResource("1_p4v73")
 transform = Transform3D(0.7936145, 0.5710248, 0.21001579, -0.4767877, 0.36926013, 0.7976969, 0.37795424, -0.73319674, 0.56530774, 185.45235, 52.41512, 145.20053)
 
 [node name="MarcoYRieles" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.587135, -0.6866045, -24.06328)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.587865, -0.6866045, -24.070116)
 mesh = ExtResource("3_v2mja")
 surface_material_override/0 = SubResource("StandardMaterial3D_v2mja")
 
@@ -40,13 +50,11 @@ transform = Transform3D(0.6313621, -0.48754758, 0.6030582, -0.47678772, 0.369260
 [node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.87602973, -0.12483841, -0.4658191, -0.47678775, 0.36926025, 0.79769695, 0.072425246, 0.920903, -0.38300434, -180.747, 52.41512, -1.1640167)
 
-[node name="MotorCompleto" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.404612, 3.4396257, 85.26757)
-mesh = ExtResource("4_64ayl")
+[node name="MotorEngranaje2" parent="." instance=ExtResource("5_hipki")]
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, 13.945, 3.404, -133.02734)
 
-[node name="MotorEngranaje" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.615415, 3.668683, -133.44633)
-mesh = ExtResource("5_wf17r")
+[node name="MotorEngranaje1" parent="." instance=ExtResource("5_hipki")]
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, 13.945223, 3.4043832, 84.7614)
 
 [node name="BotonReiniciar" parent="." instance=ExtResource("6_lkral")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 44.189, 24.999, -23.22)
@@ -65,6 +73,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lkral")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.858, -9.228, 0)
 mesh = ExtResource("8_ywmaw")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hipki")
 
 [node name="BotonIniciar" parent="." instance=ExtResource("6_lkral")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 44.189, 24.99, -11.813)
@@ -90,3 +99,19 @@ transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 42
 transform = Transform3D(-4.371139e-07, -10, -4.371139e-07, 0, -4.371139e-07, 10, -10, 4.371139e-07, 1.9106854e-14, 36.75987, 25.08, -33.1121)
 text = "RESTA
 "
+
+[node name="Correa" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.855027, 0, 0, 0, 1.0259566, 13.091537, 3.44, -21.308323)
+mesh = ExtResource("11_hipki")
+surface_material_override/0 = SubResource("StandardMaterial3D_aaok2")
+
+[node name="MotorBase" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4417715, 3.44, 84.761)
+mesh = ExtResource("11_aaok2")
+surface_material_override/0 = SubResource("StandardMaterial3D_lrao4")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 16.448475, 3.4695648e-07, 74.24608)
+radius = 0.292
+height = 17.874878
+sides = 10
