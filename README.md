@@ -6,3 +6,6 @@ Para moverse: WASD, click izquierdo para apretar botones/palanca y click derecho
 
 La máquina tiene la capacidad de sumar y restar en un sistema UNARIO. con Un limite de 9+9, aunque, por su diseño permite hacer otras sumas/restas en que uno de los valores sea mayor, pero en consecuencia el otro tiene que ser menor (ejemplo 10 + 8).
 Limitación: A tiene que ser mayor o igual que B. Siendo A y B los números sobre los que se hace algún cálculo.
+
+Para la física del cable del cabezal utilicé el código de Elijah Martin:
+https://github.com/Elij4hMartin/PseudoCablePhysics-For-Godot
